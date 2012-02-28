@@ -1,0 +1,301 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"new",
+				"newbie"
+			],
+			[
+				"is",
+				"isBadgeValid"
+			],
+			[
+				"pro",
+				"profile"
+			],
+			[
+				"empty",
+				"emptyDb"
+			],
+			[
+				"renderPro",
+				"renderProfileHome"
+			],
+			[
+				"unlock",
+				"unlockedBadges"
+			],
+			[
+				"badge",
+				"badgeServ"
+			],
+			[
+				"Badge",
+				"BadgeService"
+			],
+			[
+				"pr",
+				"profile"
+			],
+			[
+				"Profil",
+				"ProfileService"
+			],
+			[
+				"brok",
+				"brokenOne"
+			],
+			[
+				"profile",
+				"profileService"
+			],
+			[
+				"Pro",
+				"ProfileService"
+			],
+			[
+				"attach",
+				"attachDb"
+			],
+			[
+				"first",
+				"firstBadge"
+			],
+			[
+				"unl",
+				"unlockBadge"
+			],
+			[
+				"render",
+				"renderProfile"
+			],
+			[
+				"dis",
+				"dijkstra"
+			],
+			[
+				"test",
+				"testcases"
+			],
+			[
+				"log",
+				"logOfLog"
+			],
+			[
+				"nutri",
+				"nutrientPerm"
+			],
+			[
+				"edge",
+				"edgeList"
+			],
+			[
+				"connec",
+				"connectionValue"
+			],
+			[
+				"add",
+				"addEdge"
+			],
+			[
+				"ini",
+				"initialiseNode"
+			],
+			[
+				"fri",
+				"friendCount"
+			],
+			[
+				"frien",
+				"friendCounter"
+			],
+			[
+				"nOf",
+				"nOfFriends"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "Packages/Makefile/Make.sublime-build",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/dneves/Dropbox/Projects/badgy/README.md",
+		"/Users/dneves/Dropbox/Projects/badgy/badgy-server/package.json",
+		"/Users/dneves/Dropbox/Projects/badgy/badgy-server/lib/profile.js",
+		"/Users/dneves/Dropbox/Projects/badgy/badgy-server/api/profile.js",
+		"/Users/dneves/Dropbox/Projects/badgy/badgy-server/app.js",
+		"/Users/dneves/Desktop/test.js",
+		"/Users/dneves/Dropbox/Projects/badgy/badgy-server/lib/director.min.js",
+		"/Users/dneves/Dropbox/Projects/badgy/badgy.sublime-project",
+		"/Users/dneves/Library/Application Support/Sublime Text 2/Packages/User/Global.sublime-settings",
+		"/Users/dneves/Dropbox/Projects/badgy/.gitignore",
+		"/Users/dneves/Dropbox/Projects/badgy/badgy-server/lib/index.js",
+		"/Users/dneves/Dropbox/Projects/badgy/badgy-server/views/prototype.js",
+		"/Users/dneves/Dropbox/Projects/badgy/badgy.js",
+		"/Users/dneves/Documents/Projects/nodejs/node/src/stream_wrap.h",
+		"/Users/dneves/Documents/Projects/nodejs/node/deps/uv/src/uv-common.c",
+		"/Users/dneves/Documents/Projects/nodejs/node/deps/uv/src/uv-common.h",
+		"/Users/dneves/Documents/Projects/nodejs/node/deps/uv/include/uv-private/uv-unix.h",
+		"/Users/dneves/Documents/Projects/nodejs/node/deps/uv/include/uv.h",
+		"/Users/dneves/Documents/Projects/nodejs/node/src/stream_wrap.cc",
+		"/Users/dneves/Documents/Projects/nodejs/nodejs.sublime-project",
+		"/Users/dneves/Dropbox/Projects/Bitwise/inputnine.txt",
+		"/Users/dneves/Dropbox/Projects/Bitwise/problemone.c",
+		"/Users/dneves/Dropbox/Projects/Bitwise/problemnine.c",
+		"/Users/dneves/Dropbox/Projects/Bitwise/sample.cpp",
+		"/Users/dneves/Dropbox/Projects/Bitwise/inputone.txt",
+		"/Users/dneves/Dropbox/Projects/Bitwise/inputfour.txt",
+		"/Users/dneves/Dropbox/Projects/Bitwise/problemfour.c",
+		"/Users/dneves/Dropbox/Projects/Bitwise/problemone.cpp",
+		"/Users/dneves/Dropbox/Projects/Bitwise/problemone.cc"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"user",
+			"pFactory",
+			"profileService",
+			"setDatabase",
+			"profileService",
+			"var",
+			"profile",
+			"var",
+			"AfterWrite",
+			"StreamWrap",
+			"uv_udp_s",
+			"UV_HANDLE_FIELDS",
+			"uv_udp_s"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"badge",
+			"bFactory",
+			"profileService"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"uv-comm",
+				"deps/uv/src/uv-common.h"
+			],
+			[
+				"uv.",
+				"deps/uv/include/uv.h"
+			],
+			[
+				"uv-uni",
+				"deps/uv/include/uv-private/uv-unix.h"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true
+}
