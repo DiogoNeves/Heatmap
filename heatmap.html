@@ -8,6 +8,7 @@
 <body>
   <div style'width:100%; height:100%;'>
     <canvas id='heatmapView' width='600px' height='300px' style='border:1px solid #ececec;'></canvas>
+    <p id='maxheat'>Max Heat?</p>
   </div>
 
   <script>
@@ -96,8 +97,11 @@
     };
 
     var heatCanvas = document.getElementById('heatmapView');
+    var maxHeatLbl = document.getElementById('maxheat');
     var drawHeatMap = function () {
-      if (!heatCanvas) return;
+      if (!heatCanvas || maxHeat < 1) return;
+
+      maxHeatLbl.innerText = maxHeat + 'ms';
 
       var greenRange = new Range(0, maxHeat/3); // will be inverted
       var blueRange = new Range(0, maxHeat/4); // will be inverted
