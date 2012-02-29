@@ -27,6 +27,7 @@
     var lastSnapshot = new Snapshot(-1.0, new Position(-1.0, -1.0));
     var current = new Position(-1.0, -1.0); // we don't want to create an instance on every move!
     var delta = new Position(0.0, 0.0);
+    var initialTime = new Date().getTime();
 
     function captureSnapshot (event) {
       current.x = event.pageX < 0.0 ? 0.0 : event.pageX;
@@ -41,7 +42,7 @@
         // ok, we have another snapshot!
         lastSnapshot.position.x = current.x; // we can't copy position directly or we would have a ref
         lastSnapshot.position.y = current.y; // we can't copy position directly or we would have a ref
-        lastSnapshot.timestamp = 0;
+        lastSnapshot.timestamp = new Date().getTime() - initialTime;
 
         console.log(lastSnapshot.timestamp + ' - x: ' + lastSnapshot.position.x + ' y: ' + lastSnapshot.position.y);
       }
