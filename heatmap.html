@@ -1,0 +1,58 @@
+<html>
+
+<head>
+  <title>HeatMap Hack</title>
+  <script>
+    document.captureEvents(Event.MOUSEMOVE);
+    document.onmousemove = captureSnapshot;
+
+    // constants
+    var distThreshold = 4.0;
+    var distThresholdSquared = distThreshold * distThreshold;
+
+    // position type
+    var Position = function (x, y) {
+      this.x = x;
+      this.y = y;
+    };
+
+    var Snapshot = function (timestamp, position) {
+      this.timestamp = timestamp;
+      this.position = position;
+
+      // TODO: Write to stream function
+    };
+
+    // last position info
+    var lastSnapshot = new Snapshot(-1.0, new Position(-1.0, -1.0));
+    var current = new Position(-1.0, -1.0); // we don't want to create an instance on every move!
+    var delta = new Position(0.0, 0.0);
+
+    function captureSnapshot (event) {
+      current.x = event.pageX < 0.0 ? 0.0 : event.pageX;
+      current.y = event.pageY < 0.0 ? 0.0 : event.pageY;
+
+      // test against threshold
+      delta.x = current.x - lastSnapshot.position.x;
+      delta.y = current.y - lastSnapshot.position.y;
+      delta.x *= delta.x;
+      delta.y *= delta.y;
+      if ((delta.x + delta.y) >= distThresholdSquared) {
+        // ok, we have another snapshot!
+        lastSnapshot.position.x = current.x; // we can't copy position directly or we would have a ref
+        lastSnapshot.position.y = current.y; // we can't copy position directly or we would have a ref
+        lastSnapshot.timestamp = 0;
+
+        console.log(lastSnapshot.timestamp + ' - x: ' + lastSnapshot.position.x + ' y: ' + lastSnapshot.position.y);
+      }
+
+      return true;
+    }
+  </script>
+</head>
+
+<body>
+  <div style='width: 100%; height: 100%;'>Capturing...</div>
+</body>
+
+</html>
