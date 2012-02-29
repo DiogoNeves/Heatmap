@@ -1,14 +1,34 @@
+<!DOCTYPE html>
 <html>
 
 <head>
   <title>HeatMap Hack</title>
-  <script>
-    document.captureEvents(Event.MOUSEMOVE);
-    document.onmousemove = captureSnapshot;
+<head>
 
+<body>
+  <div style'width:100%; height:100%;'>
+    <canvas id='heatmapView' width='600px' height='300px' style='border:1px solid #ececec;'></canvas>
+  </div>
+
+  <script>
     // constants
-    var distThreshold = 4.0;
-    var distThresholdSquared = distThreshold * distThreshold;
+    var cellSize = 15.0;
+    var cellSizeSquared = cellSize * cellSize;
+
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+    var heatWidth = Math.floor(width / cellSize);
+    var heatHeight = Math.floor(height / cellSize);
+
+    // initialise heatmap
+    var heatmap = new Array();
+    var x, y;
+    for (x = 0; x <= heatWidth; ++x) {
+      heatmap[x] = new Array();
+      for (y = 0; y <= heatHeight; ++y) {
+        heatmap[x][y] = 0;
+      }
+    }
 
     // position type
     var Position = function (x, y) {
@@ -19,15 +39,14 @@
     var Snapshot = function (timestamp, position) {
       this.timestamp = timestamp;
       this.position = position;
-
-      // TODO: Write to stream function
-    };
+    }
 
     // last position info
-    var lastSnapshot = new Snapshot(-1.0, new Position(-1.0, -1.0));
+    var lastSnapshot = new Snapshot(0, new Position(-1.0, -1.0));
     var current = new Position(-1.0, -1.0); // we don't want to create an instance on every move!
     var delta = new Position(0.0, 0.0);
     var initialTime = new Date().getTime();
+    var maxHeat = 1;
 
     function captureSnapshot (event) {
       current.x = event.pageX < 0.0 ? 0.0 : event.pageX;
@@ -38,22 +57,88 @@
       delta.y = current.y - lastSnapshot.position.y;
       delta.x *= delta.x;
       delta.y *= delta.y;
-      if ((delta.x + delta.y) >= distThresholdSquared) {
+      if ((delta.x + delta.y) >= cellSizeSquared) {
+        // add time diff to the previous cell
+        var time = new Date().getTime() - initialTime;
+
+        if (lastSnapshot.position.x >= 0 || lastSnapshot.position.y >= 0) {
+          heatmap[lastSnapshot.position.x][lastSnapshot.position.y] += time - lastSnapshot.timestamp;
+
+          var total = heatmap[lastSnapshot.position.x][lastSnapshot.position.y];
+          if (total > maxHeat)
+            maxHeat = total;
+        }
+
         // ok, we have another snapshot!
-        lastSnapshot.position.x = current.x; // we can't copy position directly or we would have a ref
-        lastSnapshot.position.y = current.y; // we can't copy position directly or we would have a ref
-        lastSnapshot.timestamp = new Date().getTime() - initialTime;
+        lastSnapshot.position.x = Math.floor(current.x / cellSize); // we can't copy position directly or we would have a ref
+        lastSnapshot.position.y = Math.floor(current.y / cellSize); // we can't copy position directly or we would have a ref
+        lastSnapshot.timestamp = time;
 
         console.log(lastSnapshot.timestamp + ' - x: ' + lastSnapshot.position.x + ' y: ' + lastSnapshot.position.y);
       }
 
       return true;
-    }
-  </script>
-</head>
+    };
 
-<body>
-  <div style='width: 100%; height: 100%;'>Capturing...</div>
+    // drawing
+    var Range = function (start, end) {
+      this.start = start;
+      this.end = end;
+    };
+
+    var getColourComponent = function (heat, range) {
+      if (heat <= range.start)
+        return 255;
+      else if (heat >= range.end)
+        return 0;
+
+      return Math.floor(255 - ((heat - range.start) * 255 / range.end));
+    };
+
+    var heatCanvas = document.getElementById('heatmapView');
+    var drawHeatMap = function () {
+      if (!heatCanvas) return;
+
+      var greenRange = new Range(0, maxHeat/3); // will be inverted
+      var blueRange = new Range(0, maxHeat/4); // will be inverted
+      var context = heatCanvas.getContext('2d');
+
+      var x, y;
+      var px, py;
+      var wratio = heatCanvas.width * cellSize / width;
+      var hratio = heatCanvas.height * cellSize / height;
+      for (x = 0; x <= heatWidth; ++x) {
+        for (y = 0; y <= heatHeight; ++y) {
+          var heat = heatmap[x][y];
+          if (heatmap[x][y] < 1) continue;
+
+          // define colour (quite hardcoded)
+          var r = 255, g = 0, b = 0;
+          if (heat < maxHeat) {
+            g = getColourComponent(heat, greenRange);
+            b = getColourComponent(heat, blueRange);
+          }
+          var colour = (r << 16) | (g << 8) | (b);
+          context.fillStyle = colour.toString(16);
+
+          px = x * wratio;
+          py = y * hratio;
+          context.fillRect(px, py, wratio, hratio);
+        }
+      }
+
+      console.log('done!');
+    };
+
+    // start capturing
+    document.captureEvents(Event.MOUSEMOVE);
+    document.onmousemove = captureSnapshot;
+    setTimeout(function () {
+      document.onmousemove = null;
+      drawHeatMap();
+    }, 5000);
+  </script>
+
 </body>
 
 </html>
